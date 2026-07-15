@@ -4,7 +4,7 @@ A data-driven look at Olympiacos Piraeus' championship-winning 2025-26 EuroLeagu
 
 ## Background
 
-Olympiacos won the 2025-26 EuroLeague title, becoming the first regular-season top seed to win the championship under the current format. This project analyzes all 43 games of their season — regular season, play-in, playoffs, and Final Four — using shot-level data (every field goal attempt, with court coordinates and outcome).
+Olympiacos won the 2025-26 EuroLeague title, becoming the first regular-season top seed to win the championship under the current format. This project analyzes all 43 games of their season (i.e., regular season, play-in, playoffs, and Final Four) using shot-level data (every field goal attempt, with court coordinates and outcome).
 
 ## Data & Tools
 
