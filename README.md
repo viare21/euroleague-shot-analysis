@@ -22,19 +22,19 @@ Before looking at wins and losses, it's worth understanding *where* Olympiacos s
 | 3-point | 43.9% |
 | Mid-range | 9.7% |
 
-Nearly all shot attempts come from the two most efficient areas of the floor — close to the rim or beyond the arc — with mid-range shots reduced to under 10% of total attempts. This distribution stays essentially the same whether Olympiacos wins or loses (mid-range: 9.1% in losses vs 10.0% in wins), suggesting shot selection is a stable team identity, not something that shifts based on how the game is going.
+Nearly all shot attempts come from the two most efficient areas of the floor - close to the rim or beyond the arc - with mid-range shots reduced to under 10% of total attempts. This distribution stays essentially the same whether Olympiacos wins or loses (mid-range: 9.1% in losses vs 10.0% in wins), suggesting shot selection is a stable team identity, not something that shifts based on how the game is going.
 
 ## Home vs Away
 
 ![Shooting percentage home vs away](images/shooting_pct_home_away.png)
 
-Olympiacos shoots only marginally better at home (50.0%) than on the road (48.2%) — a small gap that suggests the team's shooting efficiency isn't heavily driven by home-court advantage.
+Olympiacos shoots only marginally better at home (50.0%) than on the road (48.2%): a small gap that suggests the team's shooting efficiency isn't heavily driven by home-court advantage.
 
 ## Wins vs Losses: Same Volume, Different Efficiency
 
 ![Shooting percentage wins vs losses](images/shooting_pct_win_loss.png)
 
-The picture changes when looking at outcome instead of venue. Olympiacos shoots **50.7%** in wins versus **45.3%** in losses — a meaningful 5.4-point gap.
+The picture changes when looking at outcome instead of venue. Olympiacos shoots **50.7%** in wins versus **45.3%** in losses: a meaningful 5.4-point gap.
 
 Interestingly, this isn't a matter of shooting *more* in wins. Shot volume is nearly identical regardless of outcome:
 
@@ -56,7 +56,7 @@ Breaking the gap down by shot type reveals it's driven more by two-point shootin
 | 2PT | 61.3% | 54.6% | +6.7 |
 | 3PT | 37.4% | 32.7% | +4.7 |
 
-This is a notable detail: the common assumption might be that three-point shooting swings games, but for Olympiacos the bigger swing happens closer to the basket. When the team struggles, it struggles most to finish around the rim — not just from deep.
+This is a notable detail: the common assumption might be that three-point shooting swings games, but for Olympiacos the bigger swing happens closer to the basket. When the team struggles, it struggles most to finish around the rim, not just from deep.
 
 ## Shot Chart: Wins vs Losses
 
@@ -75,7 +75,7 @@ Visualizing every shot attempt confirms the numbers: both charts show the same s
 
 1. Download the [Euroleague & Eurocup Datasets](https://www.kaggle.com/datasets/babissamothrakis/euroleague-datasets) from Kaggle
 2. Place `euroleague_points.csv`, `euroleague_header.csv`, and `euroleague_teams.csv` in the project folder
-3. Run `olympiacos_shot_analysis..py` (requires `court_utils.py` in the same folder)
+3. Run `olympiacos_shot_analysis.py` (requires `court_utils.py` in the same folder)
 
 ## About
 
