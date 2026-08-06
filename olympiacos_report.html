@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Olympiacos 2025-26: A Shot Data Analysis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F2F5D9;
+    --bg-card: #FBFCEE;
+    --border: #D6DFA8;
+    --text: #16233F;
+    --text-muted: #5B6650;
+    --green: #3E8E4F;
+    --coral: #C6564F;
+    --gold: #B8860B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    padding: 96px 0 64px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 5vw, 46px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 20px;
+    color: var(--text);
+  }
+
+  .subtitle {
+    font-size: 18px;
+    color: var(--text-muted);
+    max-width: 58ch;
+  }
+
+  /* ---------- SCOREBOARD ---------- */
+
+  .scoreboard {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 40px 0 0;
+  }
+
+  .stat {
+    background: var(--bg-card);
+    padding: 24px 16px;
+    text-align: center;
+  }
+
+  .stat-value {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 600;
+    font-size: clamp(22px, 4vw, 30px);
+    color: var(--green);
+  }
+
+  .stat-label {
+    font-size: 12.5px;
+    color: var(--text-muted);
+    margin-top: 6px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- SECTIONS ---------- */
+
+  section {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    color: var(--text);
+  }
+
+  h2 .tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  p { margin-bottom: 16px; color: var(--text); }
+
+  p:last-child { margin-bottom: 0; }
+
+  strong { color: var(--text); }
+
+  a { color: var(--green); text-decoration: none; border-bottom: 1px solid rgba(62,142,79,0.35); }
+  a:hover { border-bottom-color: var(--green); }
+
+  ul { padding-left: 20px; margin-bottom: 16px; color: var(--text); }
+  li { margin-bottom: 10px; }
+  li::marker { color: var(--gold); }
+
+  /* ---------- TABLE ---------- */
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14.5px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+  }
+
+  td.num { font-family: 'IBM Plex Mono', monospace; }
+
+  tr.win td { color: var(--green); }
+  tr.loss td { color: var(--coral); }
+
+  /* ---------- IMAGES ---------- */
+
+  figure { margin: 28px 0; }
+
+  figure img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    display: block;
+    box-shadow: 0 8px 24px rgba(22,35,63,0.12);
+  }
+
+  figcaption {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /* ---------- CALLOUT ---------- */
+
+  .callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: var(--text-muted);
+  }
+
+  .callout strong { color: var(--gold); }
+
+  /* ---------- FOOTER ---------- */
+
+  footer {
+    padding: 48px 0 80px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 13.5px;
+    padding: 12px 20px;
+    border-radius: 7px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: var(--bg-card);
+  }
+
+  .btn.primary {
+    background: var(--green);
+    color: #FBFCEE;
+    border: none;
+    font-weight: 600;
+  }
+
+  @media (max-width: 560px) {
+    .scoreboard { grid-template-columns: 1fr; }
+    .hero { padding: 64px 0 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Olympiacos Piraeus · Shot Data · 2025-26 Season</div>
+    <h1>Olympiacos 2025-26: a shot data analysis of the EuroLeague champions</h1>
+    <p class="subtitle">A data-driven look at Olympiacos Piraeus' championship-winning season, exploring shooting patterns, efficiency, and what separates their wins from their losses.</p>
+
+    <div class="scoreboard">
+      <div class="stat">
+        <div class="stat-value">50.7%</div>
+        <div class="stat-label">field goal % in wins, vs 45.3% in losses</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">+6.7</div>
+        <div class="stat-label">2-point shooting gap, wins vs losses (pts)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">90.2%</div>
+        <div class="stat-label">of shots taken from the paint or 3-point line</div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2><span class="tag">01</span> Background</h2>
+    <p>Olympiacos won the 2025-26 EuroLeague title, becoming the first regular-season top seed to win the championship under the current format. This project analyzes all 43 games of their season (regular season, play-in, playoffs, and Final Four) using shot-level data: every field goal attempt, with court coordinates and outcome.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">02</span> Data &amp; tools</h2>
+    <ul>
+      <li><strong>Data source:</strong> <a href="https://www.kaggle.com/datasets/babissamothrakis/euroleague-datasets" target="_blank">Euroleague &amp; Eurocup Datasets</a> (Kaggle), covering every EuroLeague season since 2007-08</li>
+      <li><strong>Tools:</strong> Python, pandas, matplotlib</li>
+      <li><strong>Scope:</strong> 3,504 individual shot attempts by Olympiacos across the 2025-26 season</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="tag">03</span> Shot selection: a modern offense</h2>
+    <p>Before looking at wins and losses, it's worth understanding where Olympiacos shoots from. The distribution is a clear example of modern shot selection.</p>
+
+    <table>
+      <thead>
+        <tr><th>Zone</th><th>Share of shots</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Paint</td><td class="num">46.3%</td></tr>
+        <tr><td>3-point</td><td class="num">43.9%</td></tr>
+        <tr><td>Mid-range</td><td class="num">9.7%</td></tr>
+      </tbody>
+    </table>
+
+    <p>Nearly all shot attempts come from the two most efficient areas of the floor, close to the rim or beyond the arc, with mid-range shots reduced to under 10% of total attempts. This distribution stays essentially the same whether Olympiacos wins or loses (mid-range: 9.1% in losses vs 10.0% in wins), suggesting shot selection is a stable team identity, not something that shifts based on how the game is going.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">04</span> Home vs away</h2>
+
+    <figure>
+      <img src="images/shooting_pct_home_away.png" alt="Shooting percentage home vs away">
+      <figcaption>Olympiacos field goal percentage, home vs away (2025-26)</figcaption>
+    </figure>
+
+    <p>Olympiacos shoots only marginally better at home (50.0%) than on the road (48.2%). A small gap that suggests the team's shooting efficiency isn't heavily driven by home-court advantage.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">05</span> Wins vs losses: same volume, different efficiency</h2>
+
+    <figure>
+      <img src="images/shooting_pct_win_loss.png" alt="Shooting percentage wins vs losses">
+      <figcaption>Olympiacos field goal percentage, wins vs losses (2025-26)</figcaption>
+    </figure>
+
+    <p>The picture changes when looking at outcome instead of venue. Olympiacos shoots <strong>50.7%</strong> in wins versus <strong>45.3%</strong> in losses: a meaningful 5.4-point gap.</p>
+
+    <p>Interestingly, this isn't a matter of shooting more in wins. Shot volume is nearly identical regardless of outcome.</p>
+
+    <table>
+      <thead>
+        <tr><th>Outcome</th><th>Shots per game</th></tr>
+      </thead>
+      <tbody>
+        <tr class="win"><td>Win</td><td class="num">63.4</td></tr>
+        <tr class="loss"><td>Loss</td><td class="num">63.1</td></tr>
+      </tbody>
+    </table>
+
+    <p>The difference is entirely about <strong>efficiency</strong>, not attempts.</p>
+
+    <div class="callout">Where does the gap come from? Breaking it down by shot type shows it's driven more by two-point shooting than by three-point shooting.</div>
+
+    <figure>
+      <img src="images/shooting_pct_2pt_3pt.png" alt="2PT vs 3PT shooting percentage by outcome">
+      <figcaption>2-point vs 3-point shooting percentage, by outcome</figcaption>
+    </figure>
+
+    <table>
+      <thead>
+        <tr><th>Shot type</th><th>Win %</th><th>Loss %</th><th>Gap</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>2PT</td><td class="num">61.3%</td><td class="num">54.6%</td><td class="num">+6.7</td></tr>
+        <tr><td>3PT</td><td class="num">37.4%</td><td class="num">32.7%</td><td class="num">+4.7</td></tr>
+      </tbody>
+    </table>
+
+    <p>This is a notable detail: the common assumption might be that three-point shooting swings games, but for Olympiacos the bigger swing happens closer to the basket. When the team struggles, it struggles most to finish around the rim, not just from deep.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">06</span> Shot chart: wins vs losses</h2>
+
+    <figure>
+      <img src="images/shot_chart_wins_losses.png" alt="Shot chart wins vs losses">
+      <figcaption>Every shot attempt, wins vs losses (2025-26)</figcaption>
+    </figure>
+
+    <p>Visualizing every shot attempt confirms the numbers: both charts show the same shot selection pattern (heavy paint and 3-point presence, minimal mid-range), but the loss chart shows a noticeably higher concentration of missed shots inside the paint.</p>
+  </section>
+
+  <section>
+    <h2><span class="tag">07</span> Takeaways</h2>
+    <ul>
+      <li>Olympiacos' shot selection (paint + 3-point heavy, minimal mid-range) is a consistent team identity, not something that changes with game outcome.</li>
+      <li>Shot volume per game barely changes between wins and losses.</li>
+      <li>The efficiency gap between wins and losses is real (around 5 points) and concentrated more in two-point shooting than three-point shooting.</li>
+      <li>Home-court advantage plays a smaller role in shooting efficiency than the win/loss split does.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <a class="btn primary" href="https://github.com/viare21/euroleague-shot-analysis" target="_blank">View code on GitHub</a>
+    <a class="btn" href="https://federicoviarengo.com/" target="_blank">Back to portfolio</a>
+  </footer>
+
+</div>
+
+</body>
+</html>
