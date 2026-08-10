@@ -62,7 +62,7 @@ This is a notable detail: the common assumption might be that three-point shooti
 
 ![Shot chart wins vs losses](images/shot_chart_wins_losses.png)
 
-Visualizing every shot attempt confirms the numbers: both charts show the same shot selection pattern (heavy paint and 3-point presence, minimal mid-range), but the loss chart shows a noticeably higher concentration of missed shots inside the paint.
+Visualizing every shot attempt confirms the shot selection pattern from earlier: both panels are dominated by paint and 3-point attempts, with barely any mid-range shots. The wins panel simply shows more dots overall, but that reflects Olympiacos winning far more games than it lost that season, not a difference in shots taken per game. The meaningful difference between the two panels is the make/miss ratio, consistent with the 5.4-point efficiency gap already discussed.
 
 ## Takeaways
 
